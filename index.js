@@ -3,9 +3,12 @@ class CellularAutomata {
         this.size = size;
         this.ctx = ctx;
         this.cells = cells ? cells : []
+       
     }
 
     create() {
+        console.log(this.size);
+        console.log(this.ctx);
         for (let x = 0; x < this.size; x++) {
             let row = [];
             for (let y = 0; y < this.size; y++) {
@@ -14,6 +17,8 @@ class CellularAutomata {
             }
             this.cells.push(row);
         }
+        console.log(this.cells);
+       
     }
     next() {
         this.print();
@@ -24,9 +29,9 @@ class CellularAutomata {
         for (let x = 0; x < this.size; x++) {
             for (let y = 0; y < this.size; y++) {
                 if (this.cells[x][y]) {
-                    this.ctx.fillStyle = "black";
-                } else {
                     this.ctx.fillStyle = "white";
+                } else {
+                    this.ctx.fillStyle = "black";
                     this.ctx.fillRect(x, y, 1, 1);
                 }
             }
@@ -127,6 +132,10 @@ cells[35][3] = true;
 
 
 const ctx = canvas.getContext('2d');
-const celullarAutomata = new CellularAutomata(100, ctx, cells);
+
+const celullarAutomata = new CellularAutomata(100, ctx);
 celullarAutomata.create();
+celullarAutomata.print();
 setInterval(() => celullarAutomata.next(), 500);
+
+
